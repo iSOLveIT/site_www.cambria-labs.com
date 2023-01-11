@@ -1,0 +1,652 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="Product Lab | Makerspace | Entrepreneur Incubator" name="description"/>
+<link href="../../../assets/images/favicon.png" rel="icon"/>
+<meta content="mkdocs-1.4.2, mkdocs-material-9.0.2" name="generator"/>
+<title>How to build &amp; deploy a site using MkDocs and Render - Cambria Labs</title>
+<link href="../../../assets/stylesheets/main.f56500e0.min.css" rel="stylesheet"/>
+<link href="../../../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Noto Sans JP";--md-code-font:"Roboto Mono"}</style>
+<link href="../../../css/custom.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            
+                .gscrollbar-fixer { padding-right: 15px; }
+                .gdesc-inner { font-size: 0.75rem; }
+                body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+                body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+                body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
+                </style><script src="../../../assets/javascripts/glightbox.min.js"></script></head>
+<body data-md-color-accent="deep-purple" data-md-color-primary="teal" data-md-color-scheme="slate" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#how-this-site-is-built">
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header md-header--lifted" data-md-component="header">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<a aria-label="Cambria Labs" class="md-header__button md-logo" data-md-component="logo" href="../../.." title="Cambria Labs">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            Cambria Labs
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              How to build &amp; deploy a site using MkDocs and Render
+            
+          </span>
+</div>
+</div>
+</div>
+</nav>
+<nav aria-label="Tabs" class="md-tabs" data-md-component="tabs">
+<div class="md-tabs__inner md-grid">
+<ul class="md-tabs__list">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../about/about-cambria-labs/">
+        About
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../services/">
+      Services
+    </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../..">
+      Clients
+    </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../..">
+      Partners
+    </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../..">
+      Events
+    </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../..">
+      Blog
+    </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../documentation/">
+        Docs
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../..">
+      Tools
+    </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../..">
+      Contact
+    </a>
+</li>
+</ul>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="Cambria Labs" class="md-nav__button md-logo" data-md-component="logo" href="../../.." title="Cambria Labs">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"></path></svg>
+</a>
+    Cambria Labs
+  </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" id="__nav_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_1">
+          About
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="About" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_1">
+<span class="md-nav__icon md-icon"></span>
+          About
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../about/about-cambria-labs/">
+        About Cambria
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../..">
+        Team
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../operations/processes/product-development/product-development-process/">
+        Our Approach
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4" id="__nav_1_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_1_4">
+          Locations
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="Locations" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_1_4">
+<span class="md-nav__icon md-icon"></span>
+          Locations
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../..">
+        Austin
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../..">
+        Medellin
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../services/">
+        Services
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../..">
+        Clients
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../..">
+        Partners
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../..">
+        Events
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../..">
+        Blog
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" id="__nav_7" type="checkbox"/>
+<label class="md-nav__link" for="__nav_7">
+          Docs
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="Docs" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_7">
+<span class="md-nav__icon md-icon"></span>
+          Docs
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../documentation/">
+        Documentation Index
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../documentation/pm_playbook/">
+        Product Manager Playbook
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../..">
+        Tools
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../..">
+        Contact
+      </a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Table of Contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of Contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#overview">
+    Overview
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#benefits">
+    Benefits
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#technology-stack">
+    Technology Stack
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#assumptions">
+    Assumptions
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#configure-laptop-macos">
+    Configure laptop (MacOS)
+  </a>
+<nav aria-label="Configure laptop (MacOS)" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#install-tools">
+    Install tools
+  </a>
+<nav aria-label="Install tools" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#install-homebrew-package-manager">
+    Install Homebrew package manager
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#install-git">
+    Install git
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#install-python3">
+    Install python3
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#install-pip3-python-package-manager">
+    Install pip3 Python package manager
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#install-mkdocs-and-mkdocs-material">
+    Install mkdocs and mkdocs-material
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#configure-dependencies">
+    Configure Dependencies
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#setup-content-repository">
+    Setup Content Repository
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#configure-mkdocs">
+    Configure MkDocs
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#setup-git">
+    Setup Git
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#configure-render-to-deploy-site">
+    Configure Render to deploy site
+  </a>
+<nav aria-label="Configure Render to deploy site" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#connect-render-with-github">
+    Connect Render with GitHub
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#add-new-site-in-render-using-github-repository">
+    Add new Site in Render using GitHub repository
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#connect-domain-name-to-render">
+    Connect domain name to Render
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#configure-laptop-to-edit-publish-content">
+    Configure laptop to edit &amp; publish content
+  </a>
+<nav aria-label="Configure laptop to edit &amp; publish content" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#setup-configure-obsidian">
+    Setup &amp; Configure Obsidian
+  </a>
+<nav aria-label="Setup &amp; Configure Obsidian" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#setup-configure-github-deskop-optional">
+    Setup &amp; Configure GitHub Deskop (optional)
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#perform-a-test-edit-push">
+    Perform a test edit &amp; push
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#verify-changes-are-published">
+    Verify changes are published
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#setup-mobile-device-iphoneipad-to-edit-and-publish-changes-to-the-content-repository-on-github">
+    Setup mobile device (iPhone/iPad) to edit and publish changes to the content repository on GitHub
+  </a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<h1 id="how-this-site-is-built">How this site is built</h1>
+<h2 id="overview">Overview</h2>
+<p>Create a website using plain text files, which you can edit on your phone or laptop. </p>
+<h2 id="benefits">Benefits</h2>
+<ul>
+<li>Use your laptop, phone &amp; tablet to edit website - even without internet access. </li>
+<li>Website source files are plain text files and are saved to a hosted content repository. </li>
+<li>Use a Markdown text editor like Obsidian to edit your website content. </li>
+<li>Your website automatically updates when you publish changes to the content repository. </li>
+<li>You can start writing a note on your phone in bed, continue writing on your laptop, and publish it from your iPad. </li>
+</ul>
+<h2 id="technology-stack">Technology Stack</h2>
+<ul>
+<li>Operating systems:<ul>
+<li>Laptop: MacOS</li>
+<li>Phone: iPhoneOS</li>
+<li>Tablet: iPadOS</li>
+</ul>
+</li>
+<li>File Sync (between laptop &amp; mobile device): Apple iCloud</li>
+<li>Domain name provider (DNS): <a href="https://namecheap.com/">NameCheap</a></li>
+<li>Static site generator: <a href="https://www.mkdocs.org/">MkDocs</a><ul>
+<li>Site theme: <a href="https://squidfunk.github.io/mkdocs-material/">MkDocs-Material</a></li>
+</ul>
+</li>
+<li>Content Repository: <a href="https://github.com/">GitHub</a></li>
+<li>Website Deployment platform: <a href="http://render.com/">Render</a></li>
+<li>Website Content text editor: <a href="https://obsidian.md/">Obsidian</a> (Desktop &amp; mobile)</li>
+</ul>
+<h2 id="assumptions">Assumptions</h2>
+<ul>
+<li>Ensure you have accounts setup for:<ul>
+<li>NameCheap</li>
+<li>GitHub</li>
+<li>Render</li>
+</ul>
+</li>
+<li>File locations<ul>
+<li>Repository URL: https://github.com/{organization}/{Site}</li>
+<li>Local Content Directory (syncs between your devices): <code>iCloud/Obsidian/{Site}</code><ul>
+<li>Example: <code>/Users/jro/Library/Mobile Documents/iCloud~md~obsidian/Documents/Cambria_Public</code></li>
+</ul>
+</li>
+<li>Obsidian Vault: <code>iCloud/Obsidian/{Site}</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="configure-laptop-macos">Configure laptop (MacOS)</h2>
+<h3 id="install-tools">Install tools</h3>
+<h4 id="install-homebrew-package-manager">Install Homebrew package manager</h4>
+<ul>
+<li><a href="https://brew.sh/">Homebrew docs</a><ul>
+<li>Verify: <code>brew --version</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="install-git">Install <code>git</code></h4>
+<pre><code>brew install git
+git --version # verify
+</code></pre>
+<h4 id="install-python3">Install <code>python3</code></h4>
+<pre><code>brew install python3
+python3 --version # verify
+</code></pre>
+<h4 id="install-pip3-python-package-manager">Install <code>pip3</code> Python package manager</h4>
+<pre><code>brew install pip3
+pip3 --version # verify
+</code></pre>
+<h4 id="install-mkdocs-and-mkdocs-material">Install <code>mkdocs</code> and <code>mkdocs-material</code></h4>
+<pre><code>pip3 install mkdocs
+mkdocs --version # verify
+
+pip3 install mkdocs-material # Install theme
+</code></pre>
+<h2 id="configure-dependencies">Configure Dependencies</h2>
+<ul>
+<li>Create a file <code>requirements.txt</code> in the root directory, containing:</li>
+</ul>
+<pre><code>mkdocs
+mkdocs-material
+</code></pre>
+<p>Render uses this file when building the site to install <code>mkdocs</code> and dependenies.</p>
+<h2 id="setup-content-repository">Setup Content Repository</h2>
+<ul>
+<li><a href="https://docs.github.com/en/organizations/collaborating-with-groups-in-organizations/creating-a-new-organization-from-scratch">Create a GitHub organization</a><ul>
+<li>Example: <code>cambria-labs</code></li>
+</ul>
+</li>
+<li><a href="https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository">Create a new repository in GitHub</a> where website content is stored<ul>
+<li>Example: <code>site_www.cambria-labs.com</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="configure-mkdocs">Configure MkDocs</h2>
+<p><a href="https://squidfunk.github.io/mkdocs-material/getting-started/">MkDocs Documentation &gt; Getting Started</a>
+    - <a href="https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/">MkDocs Documentation &gt; Setup</a>
+- Create a new <code>mkdocs</code> site at Local Content directory:</p>
+<pre><code>cd {Local Content Directory}
+mkdocs new .
+</code></pre>
+<ul>
+<li>Verify you can see your website:<ul>
+<li>Run <code>mkdocs serve</code> to run the local server</li>
+<li>Visit the site in your browser: http://127.0.0.1:8000/</li>
+</ul>
+</li>
+</ul>
+<h2 id="setup-git">Setup Git</h2>
+<ul>
+<li>Initialize <code>git</code> repository in this folder: <code>git init</code></li>
+<li>Add files to git, do an initial commit, push to repository:</li>
+</ul>
+<pre><code>{TODO: Add git commands here}
+# Add new files to the repository
+# Initial commit
+# Add Remote Origin
+# Test push using git cli
+</code></pre>
+<ul>
+<li>Check GitHub to Verify content updates were saved to the repository<ul>
+<li>Example: https://github.com/cambria-labs/site_www.cambria-labs.com</li>
+</ul>
+</li>
+</ul>
+<h2 id="configure-render-to-deploy-site">Configure Render to deploy site</h2>
+<h3 id="connect-render-with-github">Connect Render with GitHub</h3>
+<ul>
+<li><a href="https://render.com/docs/github">Grant Render access to GitHub repositories</a></li>
+</ul>
+<h3 id="add-new-site-in-render-using-github-repository">Add new Site in Render using GitHub repository</h3>
+<ul>
+<li>Render &gt; New Static Site</li>
+<li>Choose your repository from GitHub</li>
+<li>Configure Render build command:
+<code>pip install -r requirements.txt &amp;&amp; mkdocs build</code></li>
+<li>Set publish directory: <code>site</code> (this is the site <code>mkdocs build</code> creates)</li>
+<li>Save changes, and start a build</li>
+<li>Verify that the site builds on Render:<ul>
+<li>Check Render &gt; Dashboard &gt; {Site} &gt; Events to see the build progress</li>
+</ul>
+</li>
+<li>Once the Render build completes, verify you can view your site on Render's domain name<ul>
+<li>Example: https://cambria-labs-com.onrender.com/</li>
+</ul>
+</li>
+</ul>
+<h3 id="connect-domain-name-to-render">Connect domain name to Render</h3>
+<ul>
+<li>Follow these instructions to add your domain name to Render<ul>
+<li><a href="https://render.com/docs/configure-namecheap-dns">Render Documentation &gt; Configure DNS</a></li>
+</ul>
+</li>
+<li>Verify you can visit your site using domain name<ul>
+<li>Example: https://cambria-labs.com/</li>
+</ul>
+</li>
+</ul>
+<h2 id="configure-laptop-to-edit-publish-content">Configure laptop to edit &amp; publish content</h2>
+<h3 id="setup-configure-obsidian">Setup &amp; Configure Obsidian</h3>
+<ul>
+<li><a href="https://obsidian.md/download">Download &amp; Install Obsidian app</a></li>
+<li>Add the Local Content directory  as a Vault in Obsidian<ul>
+<li>Browse to your Cloud drive, find the Obsidian folder, and choose your site's directory as a Vault</li>
+</ul>
+</li>
+</ul>
+<h4 id="setup-configure-github-deskop-optional">Setup &amp; Configure GitHub Deskop (optional)</h4>
+<ul>
+<li><a href="https://desktop.github.com/">Download &amp; Install GitHub Deskop</a></li>
+<li>In GitHub Deskop app, Add Local Repository, and choose the Local Content Directory</li>
+</ul>
+<h4 id="perform-a-test-edit-push">Perform a test edit &amp; push</h4>
+<ul>
+<li>In Obsidian, edit a text file (example, open <code>index.md</code> and add "Hello World")</li>
+<li>Open GitHub Deskop and verify that the changed file was detected</li>
+<li>Commit the change ("Added <code>Hello World</code>")</li>
+<li>Push the commit to the remote origin</li>
+</ul>
+<h4 id="verify-changes-are-published">Verify changes are published</h4>
+<ul>
+<li>Check Render's dashboard, and verify that the site build began</li>
+<li>When the site build completes on Render, open your browser to your site's URL and verify that you see "Hello world" on the site</li>
+</ul>
+<h2 id="setup-mobile-device-iphoneipad-to-edit-and-publish-changes-to-the-content-repository-on-github">Setup mobile device (iPhone/iPad) to edit and publish changes to the content repository on GitHub</h2>
+<ul>
+<li><a href="https://workingcopy.app/">Download &amp; Install Working Copy.app</a></li>
+<li>In Working Copy, click the "+" button to add a repository</li>
+<li>Click "Link External Directory"</li>
+<li>Browse to your iCloud/Obsidian/{Site}</li>
+<li>To Verify, edit text in Obsidian.app ("Hello Universe"), switch to Working Copy, and you ought to see a change detected.</li>
+<li>Commit the change</li>
+<li>Push the change<ul>
+<li>Potential issues: <ul>
+<li>SSH key not configured in GitHub</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Verify changes to the repository were detected by Render and were published to the public site</li>
+</ul>
+<h1 id="documentation-to-dos">Documentation TO-DO's</h1>
+<ul>
+<li>How to Configure Remote origin in GitHub Desktop</li>
+<li>How Create SSH key on MacOS &amp; add to GitHub user</li>
+<li>How to Create SSH key on iPhone Working Copy, add to GitHub repo Deploy keys, so Working Copy can push changes to the repository</li>
+</ul>
+<hr/>
+<div class="md-source-file">
+<small>
+    
+      Last update:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 2, 2023</span>
+</small>
+</div>
+</article>
+</div>
+</div>
+</main>
+<footer class="md-footer">
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+</div>
+<div class="md-social">
+<a class="md-social__link" href="https://github.com/cambria-labs/site_www.cambria-labs.com" rel="noopener" target="_blank" title="github.com">
+<svg viewbox="0 0 480 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"></path></svg>
+</a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "search": "../../../assets/javascripts/workers/search.12658920.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+<script src="../../../assets/javascripts/bundle.5cf534bf.min.js"></script>
+<script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
+</html>
