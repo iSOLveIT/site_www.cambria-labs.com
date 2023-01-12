@@ -1,4 +1,6 @@
 ---
+hide:
+- toc
 title: Product Manager Guide
 description: Cambria Labs Product Manager Playbook to provide managers with information about the roles, tools, patterns, and methods of product management.
 ---
