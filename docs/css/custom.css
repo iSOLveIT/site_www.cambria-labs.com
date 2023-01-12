@@ -15,7 +15,6 @@
 .md-typeset :is(.admonition.caution, details.caution) {
 	border-color: #ffe044;
 }
-
 .md-typeset :is(.caution)>:is(.admonition-title, summary):after {
     color: #ffe044;
 }
@@ -23,7 +22,6 @@
 .md-typeset :is(.caution)>:is(.admonition-title, summary){
 	background-color: #ffe04410;
 }
-
 .md-typeset :is(.action)>:is(.admonition-title, summary):before {
     background-color: #28f82b;
     -webkit-mask-image: var(--md-admonition-icon--action);
@@ -32,28 +30,26 @@
 .md-typeset :is(.admonition.action, details.action) {
 	border-color: #28f82b;
 }
-
 .md-typeset :is(.action)>:is(.admonition-title, summary):after {
     color: #28f82b;
 }
-
 .md-typeset :is(.action)>:is(.admonition-title, summary){
 	background-color: #28f82b10;
 }
 
-.md-typeset .admonition.toc,
-.md-typeset details.toc {
+.md-typeset :is(.admonition.toc, details.toc) {
   border-color: #2b9b46;
 }
-.md-typeset .toc > .admonition-title,
-.md-typeset .toc > summary {
+.md-typeset :is(.toc)>:is(.admonition-title, summary) {
   background-color: #2b9b461a;
 }
-.md-typeset .toc > .admonition-title::before,
-.md-typeset .toc > summary::before {
+.md-typeset :is(.toc)>:is(.admonition-title, summary):before {
   background-color: #2b9b46;
   -webkit-mask-image: var(--md-admonition-icon--toc);
   mask-image: var(--md-admonition-icon--toc);
+}
+.md-typeset :is(.toc)>:is(.admonition-title, summary):after {
+    color: #2b9b46;
 }
 
 .md-typeset img,
