@@ -246,6 +246,13 @@ table thead th, table tbody td {
     width: 100%;
 }
 
+/* Modifications for mobile navigation */
+@media screen and (max-width: 76.1875em){
+    .md-tabs {
+        display: block;
+    }
+}
+/* Other CSS adjustments */
 h1.page_title {
     margin-bottom: 0.25em;
 }
